@@ -1,0 +1,213 @@
+openapi: 3.0.0
+info:
+    title: JOBS API PROD
+    contact: {}
+    version: '1.0'
+servers:
+    - url: https://jobs-api-node-94.herokuapp.com/api/v1
+      variables: {}
+paths:
+    /auth/login:
+        post:
+            tags:
+                - Auth
+            summary: POST LOGIN
+            operationId: POSTLOGIN
+            parameters: []
+            requestBody:
+                description: ''
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/POSTLOGINREQUEST'
+                        example:
+                            email: luizmmrocha@gmail.com
+                            password: '123456'
+                required: true
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+            security: []
+    /auth/register:
+        post:
+            tags:
+                - Auth
+            summary: POST REGISTER
+            operationId: POSTREGISTER
+            parameters: []
+            requestBody:
+                description: ''
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/POSTREGISTERREQUEST'
+                        example:
+                            name: luiz 2
+                            email: luizmmrocha2@gmail.com
+                            password: '123456'
+                required: true
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+            security: []
+    /jobs:
+        get:
+            tags:
+                - Job
+            summary: GET ALL JOBS
+            operationId: GETALLJOBS
+            parameters: []
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+        post:
+            tags:
+                - Job
+            summary: POST JOB
+            operationId: POSTJOB
+            parameters: []
+            requestBody:
+                description: ''
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/POSTJOBREQUEST'
+                        example:
+                            company: Space 2
+                            position: Full stack dev 2
+                required: true
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+    /job/{id}:
+        parameters:
+            - in: path
+              name: id
+              schema:
+                  type: string
+              required: true
+              description: The job ID
+        get:
+            tags:
+                - Job
+            summary: GET JOB
+            operationId: GETJOB
+            parameters: []
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+        patch:
+            tags:
+                - Job
+            summary: UPDATE JOB
+            operationId: UPDATEJOB
+            parameters: []
+            requestBody:
+                description: ''
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/UPDATEJOBREQUEST'
+                        example:
+                            company: Space
+                            position: Front end dev 2
+                required: true
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+        delete:
+            tags:
+                - Job
+            summary: DELETE JOB
+            operationId: DELETEJOB
+            parameters: []
+            responses:
+                '200':
+                    description: ''
+                    headers: {}
+            deprecated: false
+components:
+    schemas:
+        POSTLOGINREQUEST:
+            title: POSTLOGINREQUEST
+            required:
+                - email
+                - password
+            type: object
+            properties:
+                email:
+                    type: string
+                password:
+                    type: string
+            example:
+                email: luizmmrocha@gmail.com
+                password: '123456'
+        POSTREGISTERREQUEST:
+            title: POSTREGISTERREQUEST
+            required:
+                - name
+                - email
+                - password
+            type: object
+            properties:
+                name:
+                    type: string
+                email:
+                    type: string
+                password:
+                    type: string
+            example:
+                name: luiz 2
+                email: luizmmrocha2@gmail.com
+                password: '123456'
+        POSTJOBREQUEST:
+            title: POSTJOBREQUEST
+            required:
+                - company
+                - position
+            type: object
+            properties:
+                company:
+                    type: string
+                position:
+                    type: string
+            example:
+                company: Space 2
+                position: Full stack dev 2
+        UPDATEJOBREQUEST:
+            title: UPDATEJOBREQUEST
+            required:
+                - company
+                - position
+            type: object
+            properties:
+                company:
+                    type: string
+                position:
+                    type: string
+            example:
+                company: Space
+                position: Front end dev 2
+    securitySchemes:
+        httpBearer:
+            type: http
+            scheme: bearer
+security:
+    - httpBearer: []
+tags:
+    - name: Auth
+      description: ''
+    - name: Job
+      description: ''
